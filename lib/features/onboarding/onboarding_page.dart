@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import '../../core/theme/app_colors.dart';
-import '../../core/theme/app_gradients.dart';
 import '../../shared/widgets/logo.dart';
 
 class OnboardingPage extends StatefulWidget {
@@ -20,19 +19,22 @@ class _OnboardingPageState extends State<OnboardingPage> {
     {
       'step': 'BƯỚC 01 - CHÍNH HÃNG',
       'title': 'Quét mã — xác thực\nsản phẩm Trần Phú',
-      'desc': 'Mỗi cuộn cáp Trần Phú đều mang mã xác thực riêng. Quét QR / Barcode trên bao bì để kiểm tra hàng chính hãng và nhận điểm ECOTP tức thì.',
+      'desc':
+          'Mỗi cuộn cáp Trần Phú đều mang mã xác thực riêng. Quét QR / Barcode trên bao bì để kiểm tra hàng chính hãng và nhận điểm ECOTP tức thì.',
       'image': 'assets/images/onboarding_1.png',
     },
     {
       'step': 'BƯỚC 02 - TÍCH ĐIỂM',
       'title': 'Tích lũy ECOTP\nĐổi ngàn quà tặng',
-      'desc': 'Điểm ECOTP dùng để đổi các phần quà giá trị: thẻ cào, thiết bị điện, gia dụng và nhiều ưu đãi đặc quyền dành riêng cho bạn.',
+      'desc':
+          'Điểm ECOTP dùng để đổi các phần quà giá trị: thẻ cào, thiết bị điện, gia dụng và nhiều ưu đãi đặc quyền dành riêng cho bạn.',
       'image': 'assets/images/onboarding_2.jpg',
     },
     {
       'step': 'BƯỚC 03 - KẾT NỐI',
       'title': 'Cộng đồng đối tác\nDẫn đầu tương lai',
-      'desc': 'Gia nhập cộng đồng đối tác tin cậy của Trần Phú. Nhận thông tin kỹ thuật, tin tức thị trường và hỗ trợ trực tuyến 24/7.',
+      'desc':
+          'Gia nhập cộng đồng đối tác tin cậy của Trần Phú. Nhận thông tin kỹ thuật, tin tức thị trường và hỗ trợ trực tuyến 24/7.',
       'image': 'assets/images/onboarding_3.png',
     },
   ];
@@ -72,26 +74,34 @@ class _OnboardingPageState extends State<OnboardingPage> {
               );
             },
           ),
-          
+
           // Content
           SafeArea(
             child: Column(
               children: [
                 // Top Bar
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   child: Row(
                     children: [
                       const Logo(size: 32),
                       const SizedBox(width: 8),
                       const Text(
                         'ECOTP',
-                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.brandGold, letterSpacing: 1),
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w900,
+                            color: AppColors.brandGold,
+                            letterSpacing: 1),
                       ),
                       const Spacer(),
                       TextButton(
                         onPressed: () => context.go('/login'),
-                        child: const Text('Bỏ qua', style: TextStyle(color: Colors.white70, fontWeight: FontWeight.bold)),
+                        child: const Text('Bỏ qua',
+                            style: TextStyle(
+                                color: Colors.white70,
+                                fontWeight: FontWeight.bold)),
                       ),
                     ],
                   ),
@@ -105,17 +115,28 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     children: [
                       Text(
                         _slides[_currentPage]['step']!,
-                        style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w900, color: AppColors.brandGold, letterSpacing: 1),
+                        style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w900,
+                            color: AppColors.brandGold,
+                            letterSpacing: 1),
                       ),
                       const SizedBox(height: 12),
                       Text(
                         _slides[_currentPage]['title']!,
-                        style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w900, color: Colors.white, height: 1.2),
+                        style: const TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.w900,
+                            color: Colors.white,
+                            height: 1.2),
                       ),
                       const SizedBox(height: 16),
                       Text(
                         _slides[_currentPage]['desc']!,
-                        style: TextStyle(fontSize: 14, color: Colors.white.withValues(alpha: 0.7), height: 1.5),
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.white.withValues(alpha: 0.7),
+                            height: 1.5),
                       ),
                       const SizedBox(height: 24),
                       // Indicators
@@ -128,7 +149,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
                             width: active ? 32 : 8,
                             height: 4,
                             decoration: BoxDecoration(
-                              color: active ? AppColors.brandGold : Colors.white24,
+                              color:
+                                  active ? AppColors.brandGold : Colors.white24,
                               borderRadius: BorderRadius.circular(2),
                             ),
                           );
@@ -142,7 +164,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         child: ElevatedButton(
                           onPressed: () {
                             if (_currentPage < 2) {
-                              _controller.nextPage(duration: const Duration(milliseconds: 500), curve: Curves.easeOutCubic);
+                              _controller.nextPage(
+                                  duration: const Duration(milliseconds: 500),
+                                  curve: Curves.easeOutCubic);
                             } else {
                               context.go('/login');
                             }
@@ -150,7 +174,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppColors.brandRed,
                             foregroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(99)),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(99)),
                             elevation: 0,
                           ),
                           child: Row(
@@ -158,7 +183,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
                             children: [
                               Text(
                                 _currentPage < 2 ? 'Tiếp tục' : 'Bắt đầu ngay',
-                                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w900),
+                                style: const TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.w900),
                               ),
                               const SizedBox(width: 8),
                               const Icon(LucideIcons.chevronRight, size: 20),
@@ -173,10 +199,15 @@ class _OnboardingPageState extends State<OnboardingPage> {
                           onTap: () => context.go('/login'),
                           child: RichText(
                             text: const TextSpan(
-                              style: TextStyle(fontSize: 13, color: Colors.white70),
+                              style: TextStyle(
+                                  fontSize: 13, color: Colors.white70),
                               children: [
                                 TextSpan(text: 'Đã có tài khoản? '),
-                                TextSpan(text: 'Đăng nhập', style: TextStyle(color: AppColors.brandGold, fontWeight: FontWeight.bold)),
+                                TextSpan(
+                                    text: 'Đăng nhập',
+                                    style: TextStyle(
+                                        color: AppColors.brandGold,
+                                        fontWeight: FontWeight.bold)),
                               ],
                             ),
                           ),

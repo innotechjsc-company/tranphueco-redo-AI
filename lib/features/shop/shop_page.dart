@@ -42,20 +42,26 @@ class ShopPage extends ConsumerWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text(
+                      const Text(
                         'Điểm',
-                        style: TextStyle(fontSize: 10, color: AppColors.mutedForeground, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 10,
+                            color: AppColors.mutedForeground,
+                            fontWeight: FontWeight.bold),
                       ),
                       Text(
                         formatVnNumber(user.points),
-                        style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.brandGold),
+                        style: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w900,
+                            color: AppColors.brandGold),
                       ),
                     ],
                   ),
                 ],
               ),
             ),
-            
+
             // Search Bar
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -63,17 +69,21 @@ class ShopPage extends ConsumerWidget {
                 style: const TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   hintText: 'Tìm quà tặng, voucher...',
-                  hintStyle: TextStyle(color: Colors.white.withValues(alpha: 0.3)),
-                  prefixIcon: const Icon(LucideIcons.search, size: 20, color: Colors.white30),
+                  hintStyle:
+                      TextStyle(color: Colors.white.withValues(alpha: 0.3)),
+                  prefixIcon: const Icon(LucideIcons.search,
+                      size: 20, color: Colors.white30),
                   filled: true,
                   fillColor: AppColors.card,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
-                    borderSide: BorderSide(color: Colors.white.withValues(alpha: 0.05)),
+                    borderSide:
+                        BorderSide(color: Colors.white.withValues(alpha: 0.05)),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
-                    borderSide: BorderSide(color: Colors.white.withValues(alpha: 0.05)),
+                    borderSide:
+                        BorderSide(color: Colors.white.withValues(alpha: 0.05)),
                   ),
                 ),
               ),

@@ -14,23 +14,35 @@ class SupportDetailPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final ticket = ref.watch(supportByIdProvider(id));
-    if (ticket == null) return Scaffold(body: Center(child: Text('Không tìm thấy')));
+    if (ticket == null)
+      return const Scaffold(body: Center(child: Text('Không tìm thấy')));
 
     return Container(
       decoration: const BoxDecoration(gradient: AppGradients.dark),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: SafeArea(child: Column(children: [
+        body: SafeArea(
+            child: Column(children: [
           const BrandHeader(title: 'Chi tiết hỗ trợ'),
-          Expanded(child: SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
-            child: GlassCard(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(ticket.title, style: AppTextStyles.h3.copyWith(color: Colors.white)),
-              const SizedBox(height: 8),
-              Text(ticket.createdAt, style: const TextStyle(color: Colors.white38, fontSize: 12)),
-              const SizedBox(height: 16),
-              Text(ticket.content, style: AppTextStyles.bodyMd.copyWith(color: Colors.white70)),
-            ])))),
+          Expanded(
+              child: SingleChildScrollView(
+                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
+                  child: GlassCard(
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                        Text(ticket.title,
+                            style:
+                                AppTextStyles.h3.copyWith(color: Colors.white)),
+                        const SizedBox(height: 8),
+                        Text(ticket.createdAt,
+                            style: const TextStyle(
+                                color: Colors.white38, fontSize: 12)),
+                        const SizedBox(height: 16),
+                        Text(ticket.content,
+                            style: AppTextStyles.bodyMd
+                                .copyWith(color: Colors.white70)),
+                      ])))),
         ])),
       ),
     );

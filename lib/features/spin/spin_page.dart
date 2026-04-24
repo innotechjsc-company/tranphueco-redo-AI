@@ -17,7 +17,8 @@ class SpinPage extends ConsumerStatefulWidget {
   ConsumerState<SpinPage> createState() => _SpinPageState();
 }
 
-class _SpinPageState extends ConsumerState<SpinPage> with SingleTickerProviderStateMixin {
+class _SpinPageState extends ConsumerState<SpinPage>
+    with SingleTickerProviderStateMixin {
   late AnimationController _ctrl;
   double _angle = 0;
   bool _spinning = false;
@@ -25,7 +26,8 @@ class _SpinPageState extends ConsumerState<SpinPage> with SingleTickerProviderSt
   @override
   void initState() {
     super.initState();
-    _ctrl = AnimationController(vsync: this, duration: const Duration(seconds: 4));
+    _ctrl =
+        AnimationController(vsync: this, duration: const Duration(seconds: 4));
   }
 
   @override
@@ -42,7 +44,8 @@ class _SpinPageState extends ConsumerState<SpinPage> with SingleTickerProviderSt
     final targetAngle = 2 * pi * 8 + random.nextDouble() * 2 * pi;
 
     _ctrl.reset();
-    final anim = Tween<double>(begin: _angle, end: _angle + targetAngle).animate(
+    final anim =
+        Tween<double>(begin: _angle, end: _angle + targetAngle).animate(
       CurvedAnimation(parent: _ctrl, curve: Curves.easeOutCirc),
     );
     anim.addListener(() => setState(() => _angle = anim.value));
@@ -55,8 +58,8 @@ class _SpinPageState extends ConsumerState<SpinPage> with SingleTickerProviderSt
   void _showResult() {
     // Logic hiển thị kết quả chuẩn demo
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: const Text('Chúc mừng! Bạn nhận được 1.000 điểm'),
+      const SnackBar(
+        content: Text('Chúc mừng! Bạn nhận được 1.000 điểm'),
         backgroundColor: AppColors.brandRed,
       ),
     );
@@ -76,12 +79,16 @@ class _SpinPageState extends ConsumerState<SpinPage> with SingleTickerProviderSt
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
-                    icon: const Icon(LucideIcons.chevronLeft, color: Colors.white, size: 28),
+                    icon: const Icon(LucideIcons.chevronLeft,
+                        color: Colors.white, size: 28),
                     onPressed: () => context.pop(),
                   ),
                   const Text(
                     'VÒNG QUAY MAY MẮN',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w900, color: Colors.white),
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.white),
                   ),
                   const Padding(
                     padding: EdgeInsets.only(right: 8),
@@ -98,14 +105,16 @@ class _SpinPageState extends ConsumerState<SpinPage> with SingleTickerProviderSt
                   TextSpan(text: 'Bạn còn '),
                   TextSpan(
                     text: '1 lượt quay',
-                    style: TextStyle(color: AppColors.brandGold, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        color: AppColors.brandGold,
+                        fontWeight: FontWeight.bold),
                   ),
                   TextSpan(text: ' miễn phí hôm nay'),
                 ],
               ),
             ),
             const Spacer(),
-            
+
             // Wheel UI
             SizedBox(
               width: 320,
@@ -147,27 +156,33 @@ class _SpinPageState extends ConsumerState<SpinPage> with SingleTickerProviderSt
                         shape: BoxShape.circle,
                         border: Border.all(color: Colors.white, width: 2),
                         boxShadow: [
-                          BoxShadow(color: Colors.black.withValues(alpha: 0.5), blurRadius: 10),
+                          BoxShadow(
+                              color: Colors.black.withValues(alpha: 0.5),
+                              blurRadius: 10),
                         ],
                       ),
                       child: const Center(
                         child: Text(
                           'QUAY',
-                          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w900, fontSize: 12),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w900,
+                              fontSize: 12),
                         ),
                       ),
                     ),
                   ),
                   // Top Pointer
-                  Positioned(
+                  const Positioned(
                     top: -5,
-                    child: Icon(Icons.arrow_drop_down_rounded, size: 60, color: Colors.white),
+                    child: Icon(Icons.arrow_drop_down_rounded,
+                        size: 60, color: Colors.white),
                   ),
                 ],
               ),
             ),
             const Spacer(),
-            
+
             // Rules Section
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -176,13 +191,18 @@ class _SpinPageState extends ConsumerState<SpinPage> with SingleTickerProviderSt
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
+                    const Row(
                       children: [
-                        const Icon(LucideIcons.sparkles, color: AppColors.brandGold, size: 18),
-                        const SizedBox(width: 8),
+                        Icon(LucideIcons.sparkles,
+                            color: AppColors.brandGold, size: 18),
+                        SizedBox(width: 8),
                         Text(
                           'THỂ LỆ',
-                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: Colors.white, letterSpacing: 1),
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w900,
+                              color: Colors.white,
+                              letterSpacing: 1),
                         ),
                       ],
                     ),
@@ -207,8 +227,12 @@ class _SpinPageState extends ConsumerState<SpinPage> with SingleTickerProviderSt
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('• ', style: TextStyle(color: AppColors.brandGold, fontWeight: FontWeight.bold)),
-          Expanded(child: Text(text, style: const TextStyle(color: Colors.white70, fontSize: 12))),
+          const Text('• ',
+              style: TextStyle(
+                  color: AppColors.brandGold, fontWeight: FontWeight.bold)),
+          Expanded(
+              child: Text(text,
+                  style: const TextStyle(color: Colors.white70, fontSize: 12))),
         ],
       ),
     );
@@ -228,14 +252,21 @@ class _DemoWheelPainter extends CustomPainter {
   ];
 
   final List<String> labels = [
-    '100đ', '50đ', 'Voucher 50K', '200đ', 'Chúc mừng', '1.000đ', 'Quay lại', '500đ'
+    '100đ',
+    '50đ',
+    'Voucher 50K',
+    '200đ',
+    'Chúc mừng',
+    '1.000đ',
+    'Quay lại',
+    '500đ'
   ];
 
   @override
   void paint(Canvas canvas, Size size) {
     final center = Offset(size.width / 2, size.height / 2);
     final radius = size.width / 2;
-    final sliceAngle = 2 * pi / 8;
+    const sliceAngle = 2 * pi / 8;
 
     for (int i = 0; i < 8; i++) {
       final paint = Paint()..color = colors[i];
@@ -259,8 +290,9 @@ class _DemoWheelPainter extends CustomPainter {
         text: TextSpan(
           text: labels[i],
           style: TextStyle(
-            color: (colors[i] == const Color(0xFFF5E1A4) || colors[i] == const Color(0xFFE8CC6A)) 
-                ? const Color(0xFF161828) 
+            color: (colors[i] == const Color(0xFFF5E1A4) ||
+                    colors[i] == const Color(0xFFE8CC6A))
+                ? const Color(0xFF161828)
                 : Colors.white,
             fontSize: 10,
             fontWeight: FontWeight.w900,
@@ -272,12 +304,19 @@ class _DemoWheelPainter extends CustomPainter {
       canvas.save();
       canvas.translate(labelOffset.dx, labelOffset.dy);
       canvas.rotate(labelAngle + pi / 2);
-      textPainter.paint(canvas, Offset(-textPainter.width / 2, -textPainter.height / 2));
+      textPainter.paint(
+          canvas, Offset(-textPainter.width / 2, -textPainter.height / 2));
       canvas.restore();
     }
 
     // Outer line
-    canvas.drawCircle(center, radius, Paint()..color = Colors.white.withValues(alpha: 0.1)..style = PaintingStyle.stroke..strokeWidth = 4);
+    canvas.drawCircle(
+        center,
+        radius,
+        Paint()
+          ..color = Colors.white.withValues(alpha: 0.1)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 4);
   }
 
   @override

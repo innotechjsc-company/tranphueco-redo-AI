@@ -110,7 +110,7 @@ class RewardDetailPage extends ConsumerWidget {
                         padding: const EdgeInsets.only(bottom: 6),
                         child: Text(
                           'Số lượng còn: ${reward.stock}',
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 13,
                               color: AppColors.mutedForeground,
                               fontWeight: FontWeight.w600),

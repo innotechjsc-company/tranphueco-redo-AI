@@ -15,7 +15,8 @@ class NewsDetailPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final item = ref.watch(newsByIdProvider(id));
     if (item == null) {
-      return Scaffold(body: Center(child: Text('Không tìm thấy bài viết')));
+      return const Scaffold(
+          body: Center(child: Text('Không tìm thấy bài viết')));
     }
 
     return Container(
@@ -34,20 +35,36 @@ class NewsDetailPage extends ConsumerWidget {
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(16),
-                        child: Image.network(item.image, height: 200, width: double.infinity, fit: BoxFit.cover),
+                        child: Image.network(item.image,
+                            height: 200,
+                            width: double.infinity,
+                            fit: BoxFit.cover),
                       ),
                       const SizedBox(height: 16),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                        decoration: BoxDecoration(color: AppColors.brandRed.withValues(alpha: 0.15), borderRadius: BorderRadius.circular(6)),
-                        child: Text(item.category, style: const TextStyle(fontSize: 11, color: AppColors.brandRed, fontWeight: FontWeight.w600)),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 3),
+                        decoration: BoxDecoration(
+                            color: AppColors.brandRed.withValues(alpha: 0.15),
+                            borderRadius: BorderRadius.circular(6)),
+                        child: Text(item.category,
+                            style: const TextStyle(
+                                fontSize: 11,
+                                color: AppColors.brandRed,
+                                fontWeight: FontWeight.w600)),
                       ),
                       const SizedBox(height: 12),
-                      Text(item.title, style: AppTextStyles.h2.copyWith(color: Colors.white)),
+                      Text(item.title,
+                          style:
+                              AppTextStyles.h2.copyWith(color: Colors.white)),
                       const SizedBox(height: 8),
-                      Text(formatVnDate(item.date), style: const TextStyle(color: Colors.white38, fontSize: 12)),
+                      Text(formatVnDate(item.date),
+                          style: const TextStyle(
+                              color: Colors.white38, fontSize: 12)),
                       const SizedBox(height: 20),
-                      Text(item.body, style: AppTextStyles.bodyMd.copyWith(color: Colors.white70, height: 1.8)),
+                      Text(item.body,
+                          style: AppTextStyles.bodyMd
+                              .copyWith(color: Colors.white70, height: 1.8)),
                     ],
                   ),
                 ),

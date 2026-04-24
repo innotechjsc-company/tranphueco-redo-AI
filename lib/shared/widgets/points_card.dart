@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_gradients.dart';
-import '../../core/theme/app_text_styles.dart';
 import '../utils/number_format.dart';
 
 class PointsCard extends StatelessWidget {

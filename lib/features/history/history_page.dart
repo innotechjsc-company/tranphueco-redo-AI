@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_gradients.dart';
-import '../../core/theme/app_text_styles.dart';
-import '../../data/mock/mock_data.dart';
 import '../../data/mock/mock_providers.dart';
 import '../../shared/widgets/brand_header.dart';
 import '../../shared/widgets/glass_card.dart';
@@ -36,14 +34,22 @@ class HistoryPage extends ConsumerWidget {
                         child: Row(
                           children: [
                             Container(
-                              width: 40, height: 40,
+                              width: 40,
+                              height: 40,
                               decoration: BoxDecoration(
-                                color: (isPositive ? const Color(0xFF2ECC71) : AppColors.brandRed).withValues(alpha: 0.15),
+                                color: (isPositive
+                                        ? const Color(0xFF2ECC71)
+                                        : AppColors.brandRed)
+                                    .withValues(alpha: 0.15),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               child: Icon(
-                                isPositive ? Icons.arrow_downward : Icons.arrow_upward,
-                                color: isPositive ? const Color(0xFF2ECC71) : AppColors.brandRed,
+                                isPositive
+                                    ? Icons.arrow_downward
+                                    : Icons.arrow_upward,
+                                color: isPositive
+                                    ? const Color(0xFF2ECC71)
+                                    : AppColors.brandRed,
                                 size: 18,
                               ),
                             ),
@@ -52,8 +58,14 @@ class HistoryPage extends ConsumerWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(tx.title, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 14)),
-                                  Text(tx.description, style: const TextStyle(color: Colors.white54, fontSize: 12)),
+                                  Text(tx.title,
+                                      style: const TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 14)),
+                                  Text(tx.description,
+                                      style: const TextStyle(
+                                          color: Colors.white54, fontSize: 12)),
                                 ],
                               ),
                             ),
@@ -63,12 +75,16 @@ class HistoryPage extends ConsumerWidget {
                                 Text(
                                   '${isPositive ? '+' : ''}${tx.amount}',
                                   style: TextStyle(
-                                    color: isPositive ? const Color(0xFF2ECC71) : AppColors.brandRed,
+                                    color: isPositive
+                                        ? const Color(0xFF2ECC71)
+                                        : AppColors.brandRed,
                                     fontWeight: FontWeight.w800,
                                     fontSize: 16,
                                   ),
                                 ),
-                                Text(tx.date, style: const TextStyle(color: Colors.white38, fontSize: 11)),
+                                Text(tx.date,
+                                    style: const TextStyle(
+                                        color: Colors.white38, fontSize: 11)),
                               ],
                             ),
                           ],

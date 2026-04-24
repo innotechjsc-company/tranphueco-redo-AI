@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_gradients.dart';
-import '../../core/theme/app_text_styles.dart';
 import '../../data/mock/mock_data.dart';
 import '../../data/mock/mock_providers.dart';
 import '../../shared/widgets/brand_header.dart';
@@ -45,9 +44,15 @@ class SupportPage extends ConsumerWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(t.title, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 14)),
+                                  Text(t.title,
+                                      style: const TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 14)),
                                   const SizedBox(height: 4),
-                                  Text(t.createdAt, style: const TextStyle(color: Colors.white38, fontSize: 11)),
+                                  Text(t.createdAt,
+                                      style: const TextStyle(
+                                          color: Colors.white38, fontSize: 11)),
                                 ],
                               ),
                             ),
@@ -74,8 +79,12 @@ class SupportPage extends ConsumerWidget {
     };
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-      decoration: BoxDecoration(color: color.withValues(alpha: 0.15), borderRadius: BorderRadius.circular(8)),
-      child: Text(label, style: TextStyle(color: color, fontSize: 11, fontWeight: FontWeight.w700)),
+      decoration: BoxDecoration(
+          color: color.withValues(alpha: 0.15),
+          borderRadius: BorderRadius.circular(8)),
+      child: Text(label,
+          style: TextStyle(
+              color: color, fontSize: 11, fontWeight: FontWeight.w700)),
     );
   }
 }

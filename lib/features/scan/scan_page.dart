@@ -22,7 +22,8 @@ class ScanPage extends ConsumerWidget {
               child: Row(
                 children: [
                   IconButton(
-                    icon: const Icon(LucideIcons.chevronLeft, color: Colors.white, size: 28),
+                    icon: const Icon(LucideIcons.chevronLeft,
+                        color: Colors.white, size: 28),
                     onPressed: () => context.pop(),
                   ),
                   const Expanded(
@@ -31,11 +32,17 @@ class ScanPage extends ConsumerWidget {
                       children: [
                         Text(
                           'QUÉT MÃ',
-                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w900, color: Colors.white),
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w900,
+                              color: Colors.white),
                         ),
                         Text(
                           'Hướng camera vào mã QR',
-                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: Colors.white70),
+                          style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white70),
                         ),
                       ],
                     ),
@@ -47,9 +54,9 @@ class ScanPage extends ConsumerWidget {
                 ],
               ),
             ),
-            
+
             const SizedBox(height: 20),
-            
+
             // Mode Toggle (QR / Barcode)
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 24),
@@ -82,14 +89,16 @@ class ScanPage extends ConsumerWidget {
                     width: 280,
                     height: 280,
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.white.withValues(alpha: 0.05), width: 1),
+                      border: Border.all(
+                          color: Colors.white.withValues(alpha: 0.05),
+                          width: 1),
                       borderRadius: BorderRadius.circular(32),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 280,
                     height: 280,
-                    child: CustomPaint(painter: const _ScanCorners()),
+                    child: CustomPaint(painter: _ScanCorners()),
                   ),
                   // Scan line (static for now, can be animated)
                   Container(
@@ -106,7 +115,8 @@ class ScanPage extends ConsumerWidget {
                     ),
                   ),
                   // QR ghost icon in center
-                  const Icon(LucideIcons.qrCode, color: Colors.white10, size: 80),
+                  const Icon(LucideIcons.qrCode,
+                      color: Colors.white10, size: 80),
                 ],
               ),
             ),
@@ -119,7 +129,10 @@ class ScanPage extends ConsumerWidget {
               child: Text(
                 'Đặt mã trong khung hình để xác thực sản phẩm chính hãng và tích điểm tự động.',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 13, color: Colors.white.withValues(alpha: 0.6), height: 1.5),
+                style: TextStyle(
+                    fontSize: 13,
+                    color: Colors.white.withValues(alpha: 0.6),
+                    height: 1.5),
               ),
             ),
 
@@ -130,10 +143,12 @@ class ScanPage extends ConsumerWidget {
               onPressed: () => context.push('/scan/result'),
               child: Text(
                 'Mô phỏng quét thành công',
-                style: TextStyle(color: AppColors.brandRed.withValues(alpha: 0.5), fontSize: 12),
+                style: TextStyle(
+                    color: AppColors.brandRed.withValues(alpha: 0.5),
+                    fontSize: 12),
               ),
             ),
-            
+
             const SizedBox(height: 60),
           ],
         ),
@@ -186,7 +201,8 @@ class _ScanCorners extends CustomPainter {
       Path()
         ..moveTo(0, length)
         ..lineTo(0, radius)
-        ..arcToPoint(const Offset(radius, 0), radius: const Radius.circular(radius))
+        ..arcToPoint(const Offset(radius, 0),
+            radius: const Radius.circular(radius))
         ..lineTo(length, 0),
       paint,
     );
@@ -196,7 +212,8 @@ class _ScanCorners extends CustomPainter {
       Path()
         ..moveTo(size.width - length, 0)
         ..lineTo(size.width - radius, 0)
-        ..arcToPoint(Offset(size.width, radius), radius: const Radius.circular(radius))
+        ..arcToPoint(Offset(size.width, radius),
+            radius: const Radius.circular(radius))
         ..lineTo(size.width, length),
       paint,
     );
@@ -206,7 +223,8 @@ class _ScanCorners extends CustomPainter {
       Path()
         ..moveTo(size.width, size.height - length)
         ..lineTo(size.width, size.height - radius)
-        ..arcToPoint(Offset(size.width - radius, size.height), radius: const Radius.circular(radius))
+        ..arcToPoint(Offset(size.width - radius, size.height),
+            radius: const Radius.circular(radius))
         ..lineTo(size.width - length, size.height),
       paint,
     );
@@ -216,7 +234,8 @@ class _ScanCorners extends CustomPainter {
       Path()
         ..moveTo(length, size.height)
         ..lineTo(radius, size.height)
-        ..arcToPoint(Offset(0, size.height - radius), radius: const Radius.circular(radius))
+        ..arcToPoint(Offset(0, size.height - radius),
+            radius: const Radius.circular(radius))
         ..lineTo(0, size.height - length),
       paint,
     );

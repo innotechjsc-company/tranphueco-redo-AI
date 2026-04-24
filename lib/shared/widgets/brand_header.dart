@@ -43,8 +43,8 @@ class BrandHeader extends StatelessWidget {
               },
             )
           else if (logo == BrandHeaderLogo.left)
-            Padding(
-              padding: const EdgeInsets.only(left: 12, right: 8),
+            const Padding(
+              padding: EdgeInsets.only(left: 12, right: 8),
               child: Logo(size: 36),
             ),
           if (title != null)
@@ -71,8 +71,8 @@ class BrandHeader extends StatelessWidget {
           else
             const Spacer(),
           if (logo == BrandHeaderLogo.right)
-            Padding(
-              padding: const EdgeInsets.only(right: 8),
+            const Padding(
+              padding: EdgeInsets.only(right: 8),
               child: Logo(size: 36),
             ),
           if (right != null) right!,

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_gradients.dart';
-import '../../core/theme/app_text_styles.dart';
 import '../../data/mock/mock_data.dart';
 import '../../data/mock/mock_providers.dart';
 import '../../shared/widgets/brand_header.dart';
@@ -36,12 +35,15 @@ class NotificationsPage extends ConsumerWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                              width: 40, height: 40,
+                              width: 40,
+                              height: 40,
                               decoration: BoxDecoration(
-                                color: _typeColor(n.type).withValues(alpha: 0.15),
+                                color:
+                                    _typeColor(n.type).withValues(alpha: 0.15),
                                 borderRadius: BorderRadius.circular(12),
                               ),
-                              child: Icon(_typeIcon(n.type), color: _typeColor(n.type), size: 18),
+                              child: Icon(_typeIcon(n.type),
+                                  color: _typeColor(n.type), size: 18),
                             ),
                             const SizedBox(width: 12),
                             Expanded(
@@ -50,15 +52,31 @@ class NotificationsPage extends ConsumerWidget {
                                 children: [
                                   Row(
                                     children: [
-                                      Expanded(child: Text(n.title, style: TextStyle(color: Colors.white, fontWeight: n.unread ? FontWeight.w700 : FontWeight.w500, fontSize: 14))),
+                                      Expanded(
+                                          child: Text(n.title,
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: n.unread
+                                                      ? FontWeight.w700
+                                                      : FontWeight.w500,
+                                                  fontSize: 14))),
                                       if (n.unread)
-                                        Container(width: 8, height: 8, decoration: const BoxDecoration(color: AppColors.brandRed, shape: BoxShape.circle)),
+                                        Container(
+                                            width: 8,
+                                            height: 8,
+                                            decoration: const BoxDecoration(
+                                                color: AppColors.brandRed,
+                                                shape: BoxShape.circle)),
                                     ],
                                   ),
                                   const SizedBox(height: 4),
-                                  Text(n.message, style: const TextStyle(color: Colors.white54, fontSize: 12)),
+                                  Text(n.message,
+                                      style: const TextStyle(
+                                          color: Colors.white54, fontSize: 12)),
                                   const SizedBox(height: 4),
-                                  Text(n.time, style: const TextStyle(color: Colors.white30, fontSize: 11)),
+                                  Text(n.time,
+                                      style: const TextStyle(
+                                          color: Colors.white30, fontSize: 11)),
                                 ],
                               ),
                             ),
@@ -78,17 +96,23 @@ class NotificationsPage extends ConsumerWidget {
 
   Color _typeColor(NotificationType type) {
     switch (type) {
-      case NotificationType.promo: return AppColors.brandGold;
-      case NotificationType.reward: return const Color(0xFF2ECC71);
-      case NotificationType.system: return AppColors.mutedForeground;
+      case NotificationType.promo:
+        return AppColors.brandGold;
+      case NotificationType.reward:
+        return const Color(0xFF2ECC71);
+      case NotificationType.system:
+        return AppColors.mutedForeground;
     }
   }
 
   IconData _typeIcon(NotificationType type) {
     switch (type) {
-      case NotificationType.promo: return Icons.local_offer;
-      case NotificationType.reward: return Icons.stars;
-      case NotificationType.system: return Icons.info_outline;
+      case NotificationType.promo:
+        return Icons.local_offer;
+      case NotificationType.reward:
+        return Icons.stars;
+      case NotificationType.system:
+        return Icons.info_outline;
     }
   }
 }

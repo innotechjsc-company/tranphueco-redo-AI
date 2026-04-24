@@ -68,7 +68,7 @@ class RewardCard extends StatelessWidget {
                       children: [
                         Text(
                           'Còn ${reward.stock}',
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 11,
                             fontWeight: FontWeight.w600,
                             color: AppColors.mutedForeground,

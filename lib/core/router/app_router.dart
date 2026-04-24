@@ -3,9 +3,9 @@ import 'package:go_router/go_router.dart';
 
 import '../../features/onboarding/onboarding_page.dart';
 import '../../features/splash/presentation/splash_screen.dart';
-import '../../features/auth/login_page.dart';
-import '../../features/auth/register_page.dart';
-import '../../features/home/home_page.dart';
+import '../../features/auth/presentation/login_screen.dart';
+import '../../features/auth/register/presentation/register_screen.dart';
+import '../../features/home/presentation/home_screen.dart';
 import '../../features/scan/scan_page.dart';
 import '../../features/scan/scan_result_page.dart';
 import '../../features/shop/shop_page.dart';
@@ -34,8 +34,16 @@ final appRouterProvider = Provider<GoRouter>((ref) {
     routes: [
       GoRoute(path: '/', builder: (_, __) => const SplashScreen()),
       GoRoute(path: '/onboarding', builder: (_, __) => const OnboardingPage()),
-      GoRoute(path: '/login', builder: (_, __) => const LoginPage()),
-      GoRoute(path: '/register', builder: (_, __) => const RegisterPage()),
+      GoRoute(
+        path: '/login',
+        name: 'login',
+        builder: (context, state) {
+          final phone = state.uri.queryParameters['phone'];
+          final pwd = state.uri.queryParameters['pwd'];
+          return LoginScreen(prefillPhone: phone, prefillPwd: pwd);
+        },
+      ),
+      GoRoute(path: '/register', builder: (_, __) => const RegisterScreen()),
 
       // Stateful tab shell - giữ state khi chuyển tab
       StatefulShellRoute.indexedStack(
@@ -43,7 +51,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             MainScaffold(navigationShell: navShell),
         branches: [
           StatefulShellBranch(routes: [
-            GoRoute(path: '/home', builder: (_, __) => const HomePage()),
+            GoRoute(path: '/home', builder: (_, __) => const HomeScreen()),
           ]),
           StatefulShellBranch(routes: [
             GoRoute(path: '/shop', builder: (_, __) => const ShopPage()),

@@ -107,7 +107,7 @@ abstract class AppTextStyles {
         color: color ?? AppColors.foreground,
       );
 
-  static TextStyle slogan = TextStyle(
+  static TextStyle slogan = const TextStyle(
     fontFamily: 'OpenSans',
     fontSize: 10,
     fontStyle: FontStyle.italic,

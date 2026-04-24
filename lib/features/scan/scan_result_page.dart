@@ -42,8 +42,8 @@ class ScanResultPage extends ConsumerWidget {
                       ),
                       const SizedBox(height: 12),
                       Text('Quét thành công!',
-                          style: AppTextStyles.h2
-                              .copyWith(color: Colors.white)),
+                          style:
+                              AppTextStyles.h2.copyWith(color: Colors.white)),
                       const SizedBox(height: 4),
                       Text('+${product.pointsOnScan} điểm',
                           style: AppTextStyles.h3
@@ -92,7 +92,7 @@ class ScanResultPage extends ConsumerWidget {
                                               BorderRadius.circular(8),
                                         ),
                                         child: Text(c,
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 fontSize: 11,
                                                 color: AppColors.brandGold)),
                                       ))
@@ -136,8 +136,7 @@ class ScanResultPage extends ConsumerWidget {
           SizedBox(
             width: 110,
             child: Text(label,
-                style: const TextStyle(
-                    fontSize: 12, color: Colors.white54)),
+                style: const TextStyle(fontSize: 12, color: Colors.white54)),
           ),
           Expanded(
             child: Text(value,
