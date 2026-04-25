@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_text_styles.dart';
+import '../../shared/widgets/primary_button.dart';
 
 final _stepProvider = StateProvider.autoDispose<int>((ref) => 1);
 final _phoneProvider = StateProvider.autoDispose<String>((ref) => '');
@@ -56,8 +57,7 @@ class RegisterPage extends ConsumerWidget {
                     },
                   ),
                   Expanded(
-                    child: Text('Đăng ký tài khoản',
-                        style: AppTextStyles.h3),
+                    child: Text('Đăng ký tài khoản', style: AppTextStyles.h3),
                   ),
                 ],
               ),
@@ -73,9 +73,7 @@ class RegisterPage extends ConsumerWidget {
                       height: 4,
                       margin: const EdgeInsets.symmetric(horizontal: 2),
                       decoration: BoxDecoration(
-                        color: active
-                            ? AppColors.brandRed
-                            : AppColors.muted,
+                        color: active ? AppColors.brandRed : AppColors.muted,
                         borderRadius: BorderRadius.circular(2),
                       ),
                     ),
@@ -97,9 +95,8 @@ class RegisterPage extends ConsumerWidget {
             Expanded(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.fromLTRB(16, 24, 16, 32),
-                child: done
-                    ? _buildDone(context)
-                    : _buildStep(context, ref, step),
+                child:
+                    done ? _buildDone(context) : _buildStep(context, ref, step),
               ),
             ),
           ],
@@ -141,8 +138,7 @@ class RegisterPage extends ConsumerWidget {
         const SizedBox(height: 8),
         Text(
           'Đang chuyển đến trang đăng nhập...',
-          style: AppTextStyles.body
-              .copyWith(color: AppColors.mutedForeground),
+          style: AppTextStyles.body.copyWith(color: AppColors.mutedForeground),
         ),
       ],
     );
@@ -171,22 +167,10 @@ class _StepPhone extends StatelessWidget {
           onChanged: (v) => ref.read(_phoneProvider.notifier).state = v,
         ),
         const SizedBox(height: 24),
-        SizedBox(
-          width: double.infinity,
-          height: 48,
-          child: ElevatedButton(
-            onPressed: phone.length >= 10
-                ? () => ref.read(_stepProvider.notifier).state = 2
-                : null,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.brandRed,
-              foregroundColor: Colors.white,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(99)),
-            ),
-            child: const Text('Tiếp tục',
-                style: TextStyle(fontWeight: FontWeight.bold)),
-          ),
+        PrimaryButton(
+          label: 'Tiếp tục',
+          enabled: phone.length >= 10,
+          onPressed: () => ref.read(_stepProvider.notifier).state = 2,
         ),
       ],
     );
@@ -221,22 +205,10 @@ class _StepOtp extends StatelessWidget {
           onChanged: (v) => ref.read(_otpProvider.notifier).state = v,
         ),
         const SizedBox(height: 24),
-        SizedBox(
-          width: double.infinity,
-          height: 48,
-          child: ElevatedButton(
-            onPressed: otp.length == 6
-                ? () => ref.read(_stepProvider.notifier).state = 3
-                : null,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.brandRed,
-              foregroundColor: Colors.white,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(99)),
-            ),
-            child: const Text('Xác nhận',
-                style: TextStyle(fontWeight: FontWeight.bold)),
-          ),
+        PrimaryButton(
+          label: 'Xác nhận',
+          enabled: otp.length == 6,
+          onPressed: () => ref.read(_stepProvider.notifier).state = 3,
         ),
       ],
     );
@@ -264,22 +236,10 @@ class _StepPassword extends StatelessWidget {
           onChanged: (v) => ref.read(_pwdProvider.notifier).state = v,
         ),
         const SizedBox(height: 24),
-        SizedBox(
-          width: double.infinity,
-          height: 48,
-          child: ElevatedButton(
-            onPressed: pwd.length >= 6
-                ? () => ref.read(_stepProvider.notifier).state = 4
-                : null,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.brandRed,
-              foregroundColor: Colors.white,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(99)),
-            ),
-            child: const Text('Tiếp tục',
-                style: TextStyle(fontWeight: FontWeight.bold)),
-          ),
+        PrimaryButton(
+          label: 'Tiếp tục',
+          enabled: pwd.length >= 6,
+          onPressed: () => ref.read(_stepProvider.notifier).state = 4,
         ),
       ],
     );
@@ -306,22 +266,10 @@ class _StepProfile extends StatelessWidget {
           onChanged: (v) => ref.read(_nameProvider.notifier).state = v,
         ),
         const SizedBox(height: 24),
-        SizedBox(
-          width: double.infinity,
-          height: 48,
-          child: ElevatedButton(
-            onPressed: name.length >= 2
-                ? () => ref.read(_doneProvider.notifier).state = true
-                : null,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.brandRed,
-              foregroundColor: Colors.white,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(99)),
-            ),
-            child: const Text('Hoàn tất đăng ký',
-                style: TextStyle(fontWeight: FontWeight.bold)),
-          ),
+        PrimaryButton(
+          label: 'Hoàn tất đăng ký',
+          enabled: name.length >= 2,
+          onPressed: () => ref.read(_doneProvider.notifier).state = true,
         ),
       ],
     );

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_gradients.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../data/mock/mock_providers.dart';
@@ -14,8 +13,9 @@ class SupportDetailPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final ticket = ref.watch(supportByIdProvider(id));
-    if (ticket == null)
+    if (ticket == null) {
       return const Scaffold(body: Center(child: Text('Không tìm thấy')));
+    }
 
     return Container(
       decoration: const BoxDecoration(gradient: AppGradients.dark),

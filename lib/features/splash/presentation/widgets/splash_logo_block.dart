@@ -15,11 +15,11 @@ class SplashLogoBlock extends StatelessWidget {
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: Colors.white.withOpacity(0.08),
-            border: Border.all(color: AppColors.brandGold.withOpacity(0.5)),
+            color: Colors.white.withValues(alpha: 0.08),
+            border: Border.all(color: AppColors.brandGold.withValues(alpha: 0.5)),
             boxShadow: [
               BoxShadow(
-                color: AppColors.brandGold.withOpacity(0.25),
+                color: AppColors.brandGold.withValues(alpha: 0.25),
                 blurRadius: 24,
                 spreadRadius: 1,
               ),
@@ -56,14 +56,14 @@ class SplashLogoBlock extends StatelessWidget {
             Container(
                 width: 32,
                 height: 1,
-                color: AppColors.brandGold.withOpacity(0.6)),
+                color: AppColors.brandGold.withValues(alpha: 0.6)),
             const SizedBox(width: 8),
             Text('DẪN ĐẦU TƯƠNG LAI', style: AppTextStyles.slogan),
             const SizedBox(width: 8),
             Container(
                 width: 32,
                 height: 1,
-                color: AppColors.brandGold.withOpacity(0.6)),
+                color: AppColors.brandGold.withValues(alpha: 0.6)),
           ],
         ),
       ],

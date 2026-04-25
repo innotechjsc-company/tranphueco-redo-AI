@@ -22,7 +22,7 @@ class LoginFormCard extends ConsumerWidget {
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: AppColors.card,
-        borderRadius: BorderRadius.circular(28),
+        borderRadius: BorderRadius.circular(24),
         border: Border.all(color: AppColors.border),
         boxShadow: AppShadows.soft,
       ),
@@ -110,7 +110,7 @@ class LoginFormCard extends ConsumerWidget {
               style: FilledButton.styleFrom(
                 padding: EdgeInsets.zero,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(16),
                 ),
               ).copyWith(
                 backgroundColor:
@@ -120,7 +120,7 @@ class LoginFormCard extends ConsumerWidget {
               child: Ink(
                 decoration: BoxDecoration(
                   gradient: AppGradients.red,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(16),
                   boxShadow: AppShadows.brand,
                 ),
                 child: Center(

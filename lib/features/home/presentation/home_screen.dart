@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../shared/widgets/section_title.dart';
+import '../../../shared/widgets/mobile_shell.dart';
+import '../../../shared/widgets/bottom_tab_bar.dart';
 import '../application/home_controller.dart';
-import '../domain/home_feed.dart';
 import 'widgets/home_luxe_header.dart';
 import 'widgets/home_quick_actions.dart';
 import 'widgets/home_checkin_card.dart';
@@ -21,10 +23,19 @@ class HomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncFeed = ref.watch(homeFeedProvider);
 
-    return Scaffold(
-      backgroundColor: AppColors.surface,
-      extendBody: true,
-      body: asyncFeed.when(
+    return MobileShell(
+      backgroundColor: AppColors.background,
+      withTabBar: true,
+      bottomBar: BottomTabBar(
+        currentIndex: 0,
+        onTap: (i) {
+          if (i == 0) return;
+          if (i == 1) context.push('/shop');
+          if (i == 2) context.push('/spin');
+          if (i == 3) context.push('/profile');
+        },
+      ),
+      child: asyncFeed.when(
         loading: () => const HomeSkeleton(),
         error: (e, _) =>
             HomeErrorView(onRetry: () => ref.invalidate(homeFeedProvider)),
@@ -42,6 +53,7 @@ class HomeScreen extends ConsumerWidget {
                 ),
               ),
               const SliverToBoxAdapter(child: HomeQuickActions()),
+              const SliverToBoxAdapter(child: SizedBox(height: 24)),
               SliverToBoxAdapter(child: HomeCheckinCard(summary: feed.checkin)),
               SliverToBoxAdapter(child: HomeStatsStrip(stats: feed.stats)),
               const SliverToBoxAdapter(
@@ -49,7 +61,7 @@ class HomeScreen extends ConsumerWidget {
               ),
               SliverToBoxAdapter(
                   child:
-                      HomeRewardGrid(rewards: feed.rewards.take(4).toList())),
+                      HomeRewardGrid(rewards: feed.rewards.take(10).toList())),
               const SliverToBoxAdapter(child: SectionTitle(title: 'Tiện ích')),
               const SliverToBoxAdapter(child: HomeUtilityGrid()),
               const SliverToBoxAdapter(
@@ -102,8 +114,7 @@ class HomeSkeleton extends StatelessWidget {
 
 class _Shimmer extends StatelessWidget {
   final double height;
-  final double radius;
-  const _Shimmer({required this.height, this.radius = 0});
+  const _Shimmer({super.key, required this.height});
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +123,7 @@ class _Shimmer extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
         color: AppColors.card,
-        borderRadius: BorderRadius.circular(radius > 0 ? radius : 0),
+        borderRadius: BorderRadius.circular(24),
       ),
     );
   }

@@ -35,9 +35,8 @@ class PointsCard extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          // Background pattern or textures can be added here
           Padding(
-            padding: const EdgeInsets.all(24.0),
+            padding: const EdgeInsets.all(20.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -54,7 +53,7 @@ class PointsCard extends StatelessWidget {
                 Text(
                   formatVnNumber(points),
                   style: const TextStyle(
-                    fontSize: 42,
+                    fontSize: 36,
                     fontWeight: FontWeight.w900,
                     color: AppColors.brandNavy,
                     letterSpacing: -1,
@@ -70,8 +69,7 @@ class PointsCard extends StatelessWidget {
                     color: AppColors.brandNavy,
                   ),
                 ),
-                const SizedBox(height: 20),
-                // Progress Bar
+                const SizedBox(height: 16),
                 Stack(
                   children: [
                     Container(
@@ -119,19 +117,18 @@ class PointsCard extends StatelessWidget {
               ],
             ),
           ),
-          // QR Icon - Chuẩn demo
           Positioned(
-            top: 24,
-            right: 24,
+            top: 20,
+            right: 20,
             child: Container(
-              padding: const EdgeInsets.all(12),
+              padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 color: AppColors.brandNavy.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(16),
               ),
               child: const Icon(
                 Icons.qr_code_2_rounded,
-                size: 32,
+                size: 28,
                 color: AppColors.brandNavy,
               ),
             ),

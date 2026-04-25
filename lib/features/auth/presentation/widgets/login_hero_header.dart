@@ -1,8 +1,8 @@
+import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_gradients.dart';
 import '../../../../shared/widgets/logo.dart';
-
 class _Sparkle extends StatelessWidget {
   final double top;
   final double? right;
@@ -71,8 +71,7 @@ class _LoginHeroHeaderState extends State<LoginHeroHeader>
       child: Stack(
         children: [
           Positioned.fill(
-            child:
-                Image.asset('assets/images/Trang chủ.png', fit: BoxFit.cover),
+            child: Image.asset('assets/images/Trang chủ.png', fit: BoxFit.cover),
           ),
           const Positioned.fill(
             child: DecoratedBox(
@@ -131,27 +130,70 @@ class _LogoBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      bottom: 50,
-      left: 0,
-      right: 0,
-      child: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(4),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.brandGold.withValues(alpha: 0.4),
-                  blurRadius: 16,
-                  spreadRadius: 2,
-                ),
-              ],
+    return Padding(
+      padding: const EdgeInsets.only(top: 80),
+      child: SizedBox(
+        width: double.infinity,
+        child: Column(
+          children: [
+            SizedBox(
+              width: 108,
+              height: 108,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Opacity(
+                    opacity: 0.7,
+                    child: ImageFiltered(
+                      imageFilter: ui.ImageFilter.blur(sigmaX: 16, sigmaY: 16),
+                      child: Container(
+                        width: 108,
+                        height: 108,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          gradient: AppGradients.gold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: 104,
+                    height: 104,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: AppGradients.gold,
+                    ),
+                  ),
+                  Container(
+                    width: 96,
+                    height: 96,
+                    clipBehavior: Clip.antiAlias,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          offset: Offset(0, 25),
+                          blurRadius: 50,
+                          color: Color(0x40000000),
+                        ),
+                      ],
+                    ),
+                    child: ClipOval(
+                      child: OverflowBox(
+                        maxWidth: 192,
+                        maxHeight: 192,
+                        child: Image.asset(
+                          'assets/images/logo.png', // Fallback to logo.png in case brand/logo doesn't exist
+                          fit: BoxFit.contain,
+                          errorBuilder: (_, __, ___) => const Logo(size: 96),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-            child: const Logo(size: 80),
-          ),
           const SizedBox(height: 20),
           RichText(
             textAlign: TextAlign.center,
@@ -192,7 +234,8 @@ class _LogoBlock extends StatelessWidget {
               letterSpacing: 2.5,
             ),
           ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -23,54 +24,74 @@ class HomeCheckinCard extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
-            gradient: AppGradients.checkinBanner,
-            borderRadius: BorderRadius.circular(28),
+            gradient: AppGradients.red,
+            borderRadius: BorderRadius.circular(24),
             boxShadow: [
               BoxShadow(
-                color: AppColors.brandRed.withValues(alpha: 0.3),
-                blurRadius: 15,
-                offset: const Offset(0, 8),
+                color: AppColors.brandRed.withValues(alpha: 0.4),
+                blurRadius: 40,
+                offset: const Offset(0, 14),
               ),
             ],
           ),
           child: Stack(
             children: [
               Positioned(
-                bottom: -20,
-                right: -20,
-                child: Opacity(
-                  opacity: 0.5,
-                  child: SvgPicture.asset(
-                    'assets/images/footer.svg',
-                    width: 120,
-                    height: 120,
+                bottom: -8,
+                right: -16,
+                child: IgnorePointer(
+                  child: ExcludeSemantics(
+                    child: Opacity(
+                      opacity: 0.50,
+                      child: SvgPicture.asset(
+                        'assets/brand/footer.svg',
+                        width: 176,
+                      ),
+                    ),
                   ),
                 ),
               ),
               Row(
                 children: [
-                  Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.15),
-                      borderRadius: BorderRadius.circular(16),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: BackdropFilter(
+                      filter: ui.ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+                      child: Container(
+                        width: 48,
+                        height: 48,
+                        decoration: BoxDecoration(
+                          color: Colors.white.withValues(alpha: 0.15),
+                        ),
+                        child: const Center(
+                          child: Icon(LucideIcons.calendarCheck,
+                              color: Colors.white, size: 24),
+                        ),
+                      ),
                     ),
-                    child: const Icon(LucideIcons.calendarCheck2,
-                        color: Colors.white, size: 28),
                   ),
                   const SizedBox(width: 16),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          '🔥 ĐIỂM DANH — CHUỖI ${summary.streakDays} NGÀY',
-                          style: TextStyle(
-                            fontSize: 11,
-                            fontWeight: FontWeight.w800,
-                            color: Colors.white.withValues(alpha: 0.8),
-                            letterSpacing: 0.5,
-                          ),
+                        Row(
+                          children: [
+                            const Icon(LucideIcons.flame,
+                                size: 12, color: AppColors.brandGold),
+                            const SizedBox(width: 6),
+                            Expanded(
+                              child: Text(
+                                'ĐIỂM DANH — CHUỖI ${summary.streakDays} NGÀY',
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w800,
+                                  color: Colors.white.withValues(alpha: 0.8),
+                                  letterSpacing: 0.5,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                         const SizedBox(height: 4),
                         ShaderMask(

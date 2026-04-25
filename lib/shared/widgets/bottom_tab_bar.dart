@@ -29,7 +29,9 @@ class BottomTabBar extends StatelessWidget {
       height: 70 + bottomInset,
       decoration: BoxDecoration(
         color: AppColors.surface,
-        border: Border(top: BorderSide(color: Colors.white.withValues(alpha: 0.05), width: 0.5)),
+        border: Border(
+            top: BorderSide(
+                color: Colors.white.withValues(alpha: 0.05), width: 0.5)),
       ),
       child: Stack(
         clipBehavior: Clip.none,
@@ -46,30 +48,31 @@ class BottomTabBar extends StatelessWidget {
               ],
             ),
           ),
-          // Nút Scan trung tâm - Chuẩn demo (Đỏ, tròn, bóng đổ)
+          // Nút Scan trung tâm
           Positioned(
-            top: -25,
+            top: -28,
             left: 0,
             right: 0,
             child: Center(
               child: GestureDetector(
                 onTap: () => context.push('/scan'),
                 child: Container(
-                  width: 56,
-                  height: 56,
+                  width: 64,
+                  height: 64,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     gradient: AppGradients.red,
+                    border: Border.all(color: AppColors.surface, width: 4),
                     boxShadow: [
                       BoxShadow(
                         color: AppColors.brandRed.withValues(alpha: 0.4),
-                        blurRadius: 15,
-                        spreadRadius: 2,
-                        offset: const Offset(0, 4),
+                        blurRadius: 40,
+                        offset: const Offset(0, 14),
                       ),
                     ],
                   ),
-                  child: const Icon(LucideIcons.scanLine, color: Colors.white, size: 28),
+                  child: const Icon(LucideIcons.scanLine,
+                      color: Colors.white, size: 28),
                 ),
               ),
             ),

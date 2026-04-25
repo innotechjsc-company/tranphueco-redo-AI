@@ -1,3 +1,4 @@
+import 'dart:ui' as ui;
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -16,7 +17,6 @@ class HomeLuxeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 220,
       padding: EdgeInsets.fromLTRB(
           16, MediaQuery.paddingOf(context).top + 16, 16, 96),
       decoration: const BoxDecoration(gradient: AppGradients.luxe),
@@ -25,19 +25,29 @@ class HomeLuxeHeader extends StatelessWidget {
           Positioned(
             top: -64,
             right: -64,
-            child: Opacity(
-              opacity: 0.30,
-              child: SvgPicture.asset('assets/brand/element.svg', width: 224),
+            child: IgnorePointer(
+              child: ExcludeSemantics(
+                child: Opacity(
+                  opacity: 0.30,
+                  child:
+                      SvgPicture.asset('assets/brand/element.svg', width: 224),
+                ),
+              ),
             ),
           ),
           Positioned(
             bottom: -80,
             left: -80,
-            child: Transform.rotate(
-              angle: math.pi,
-              child: Opacity(
-                opacity: 0.20,
-                child: SvgPicture.asset('assets/brand/element.svg', width: 192),
+            child: IgnorePointer(
+              child: ExcludeSemantics(
+                child: Transform.rotate(
+                  angle: math.pi,
+                  child: Opacity(
+                    opacity: 0.20,
+                    child: SvgPicture.asset('assets/brand/element.svg',
+                        width: 192),
+                  ),
+                ),
               ),
             ),
           ),
@@ -144,14 +154,23 @@ class _CircleIconButton extends StatelessWidget {
       onTap: onTap,
       child: Stack(
         children: [
-          Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              color: Colors.white.withValues(alpha: 0.1),
-              shape: BoxShape.circle,
+          ClipOval(
+            child: BackdropFilter(
+              filter: ui.ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+              child: Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: Colors.white.withValues(alpha: 0.10),
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: Colors.white.withValues(alpha: 0.15),
+                    width: 1,
+                  ),
+                ),
+                child: Icon(icon, size: 20, color: Colors.white),
+              ),
             ),
-            child: Icon(icon, size: 20, color: Colors.white),
           ),
           if (badge != null)
             Positioned(
@@ -188,7 +207,7 @@ class HomeHeaderWithPoints extends StatelessWidget {
   const HomeHeaderWithPoints(
       {super.key, required this.user, required this.unread});
 
-  static const double kHeaderHeight = 200;
+  static const double kHeaderHeight = 250;
   static const double kPointsCardHeight = 180;
   static const double kOverlap = 64;
 
@@ -209,8 +228,8 @@ class HomeHeaderWithPoints extends StatelessWidget {
             child: HomeLuxeHeader(user: user, unread: unread),
           ),
           Positioned(
-            left: 16,
-            right: 16,
+            left: 0,
+            right: 0,
             top: kHeaderHeight - kOverlap,
             height: kPointsCardHeight,
             child: PointsCard(
